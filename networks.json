@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "stETH": {
+      "address": "0x93c4b944D05dfe6df7645A86cd2206016c51564D",
+      "startBlock": 17445570
+    }
+  }
+}
