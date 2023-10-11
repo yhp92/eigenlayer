@@ -3,28 +3,58 @@ schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum
-    name: stETH
+    name: Contract
     network: mainnet
     source:
-      address: "0x93c4b944D05dfe6df7645A86cd2206016c51564D"
-      abi: stETH
-      startBlock: 17445570
+      address: "0x858646372CC42E1A627fcE94aa7A7033e7CF075A"
+      abi: Contract
+      startBlock: 17445566
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AdminChanged
-        - BeaconUpgraded
-        - Upgraded
+        - Deposit
+        - Initialized
+        - OwnershipTransferred
+        - Paused
+        - PauserRegistrySet
+        - ShareWithdrawalQueued
+        - StrategyAddedToDepositWhitelist
+        - StrategyRemovedFromDepositWhitelist
+        - StrategyWhitelisterChanged
+        - Unpaused
+        - WithdrawalCompleted
+        - WithdrawalDelayBlocksSet
+        - WithdrawalQueued
       abis:
-        - name: stETH
-          file: stETH/abis/stETH.json
+        - name: Contract
+          file: Contract/abis/Contract.json
       eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
-      file: stETH/stETH.wasm
+        - event: Deposit(address,address,address,uint256)
+          handler: handleDeposit
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(indexed address,uint256)
+          handler: handlePaused
+        - event: PauserRegistrySet(address,address)
+          handler: handlePauserRegistrySet
+        - event: ShareWithdrawalQueued(address,uint96,address,uint256)
+          handler: handleShareWithdrawalQueued
+        - event: StrategyAddedToDepositWhitelist(address)
+          handler: handleStrategyAddedToDepositWhitelist
+        - event: StrategyRemovedFromDepositWhitelist(address)
+          handler: handleStrategyRemovedFromDepositWhitelist
+        - event: StrategyWhitelisterChanged(address,address)
+          handler: handleStrategyWhitelisterChanged
+        - event: Unpaused(indexed address,uint256)
+          handler: handleUnpaused
+        - event: WithdrawalCompleted(indexed address,uint96,indexed address,bytes32)
+          handler: handleWithdrawalCompleted
+        - event: WithdrawalDelayBlocksSet(uint256,uint256)
+          handler: handleWithdrawalDelayBlocksSet
+        - event: WithdrawalQueued(address,uint96,address,address,bytes32)
+          handler: handleWithdrawalQueued
+      file: Contract/Contract.wasm
