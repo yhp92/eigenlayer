@@ -1,0 +1,122 @@
+type Deposit @entity(immutable: true) {
+  id: Bytes!
+  depositor: Bytes! # address
+  token: Bytes! # address
+  strategy: Bytes! # address
+  shares: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Paused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  newPausedStatus: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PauserRegistrySet @entity(immutable: true) {
+  id: Bytes!
+  pauserRegistry: Bytes! # address
+  newPauserRegistry: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ShareWithdrawalQueued @entity(immutable: true) {
+  id: Bytes!
+  depositor: Bytes! # address
+  nonce: BigInt! # uint96
+  strategy: Bytes! # address
+  shares: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StrategyAddedToDepositWhitelist @entity(immutable: true) {
+  id: Bytes!
+  strategy: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StrategyRemovedFromDepositWhitelist @entity(immutable: true) {
+  id: Bytes!
+  strategy: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StrategyWhitelisterChanged @entity(immutable: true) {
+  id: Bytes!
+  previousAddress: Bytes! # address
+  newAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Unpaused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  newPausedStatus: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawalCompleted @entity(immutable: true) {
+  id: Bytes!
+  depositor: Bytes! # address
+  nonce: BigInt! # uint96
+  withdrawer: Bytes! # address
+  withdrawalRoot: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawalDelayBlocksSet @entity(immutable: true) {
+  id: Bytes!
+  previousValue: BigInt! # uint256
+  newValue: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawalQueued @entity(immutable: true) {
+  id: Bytes!
+  depositor: Bytes! # address
+  nonce: BigInt! # uint96
+  withdrawer: Bytes! # address
+  delegatedAddress: Bytes! # address
+  withdrawalRoot: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
