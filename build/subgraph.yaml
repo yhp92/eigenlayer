@@ -29,7 +29,9 @@ dataSources:
         - WithdrawalQueued
       abis:
         - name: Contract
-          file: Contract/abis/Contract.json
+          file: Contract\abis\Contract.json
+        - name: IERC20
+          file: Contract\abis\IERC20.json
       eventHandlers:
         - event: Deposit(address,address,address,uint256)
           handler: handleDeposit
@@ -57,4 +59,4 @@ dataSources:
           handler: handleWithdrawalDelayBlocksSet
         - event: WithdrawalQueued(address,uint96,address,address,bytes32)
           handler: handleWithdrawalQueued
-      file: Contract/Contract.wasm
+      file: Contract\Contract.wasm
