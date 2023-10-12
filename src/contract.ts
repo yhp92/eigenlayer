@@ -1,3 +1,5 @@
+import { ierc20 } from "../abis/ierc20"
+
 import {
   Deposit as DepositEvent,
   Initialized as InitializedEvent,
@@ -37,10 +39,16 @@ export function handleDeposit(event: DepositEvent): void {
   entity.token = event.params.token
   entity.strategy = event.params.strategy
   entity.shares = event.params.shares
-
+  
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
+
+  let contract = ierc20.bind(event.logIndex)
+  let name = contract.try_name()
+  if (!name.reverted) {
+    entity.name = name.value
+  }
 
   entity.save()
 }
